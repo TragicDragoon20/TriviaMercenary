@@ -94,3 +94,14 @@ Plugins/**/Binaries/*
 Plugins/**/Intermediate/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unrealengine
+
+### Wwise ###
+# Ignore Wwise plugin (as it should be downloaded and placed into the Plugins folder manually)
+Plugins/Wwise
+# Ignore cache files
+TriviaMercenary_WwiseProject/.cache
+*.validationcache
+*.wsettings
+*.akd
+SoundbanksInfo.xml
+PluginInfo.xml

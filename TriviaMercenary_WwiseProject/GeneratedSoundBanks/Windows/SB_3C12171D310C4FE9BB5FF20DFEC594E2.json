@@ -1,0 +1,45 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "12",
+  "SoundbankVersion": "140",
+  "RootPaths": {
+   "ProjectRoot": "D:\\Projects\\Trivia Mercenary\\TriviaMercenary\\TriviaMercenary_WwiseProject\\",
+   "SourceFilesRoot": "D:\\Projects\\Trivia Mercenary\\TriviaMercenary\\TriviaMercenary_WwiseProject\\.cache\\Windows\\",
+   "SoundBanksRoot": "D:\\Projects\\Trivia Mercenary\\TriviaMercenary\\TriviaMercenary_WwiseProject\\GeneratedSoundBanks\\Windows\\",
+   "ExternalSourcesInputFile": "",
+   "ExternalSourcesOutputRoot": "D:\\Projects\\Trivia Mercenary\\TriviaMercenary\\TriviaMercenary_WwiseProject\\GeneratedSoundBanks\\Windows"
+  },
+  "SoundBanks": [
+   {
+    "Id": "541655486",
+    "GUID": "{204901BE-01BE-11BE-BEBE-BEBEBEBEBEBE}",
+    "Language": "SFX",
+    "Hash": "4088058233",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\SB_3C12171D310C4FE9BB5FF20DFEC594E2",
+    "ShortName": "SB_3C12171D310C4FE9BB5FF20DFEC594E2",
+    "Path": "SB_3C12171D310C4FE9BB5FF20DFEC594E2.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "4258653052",
+      "Name": "Test_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Test_Event",
+      "GUID": "{3C12171D-310C-4FE9-BB5F-F20DFEC594E2}",
+      "DurationType": "OneShot",
+      "DurationMin": "3.65",
+      "DurationMax": "3.65",
+      "ExcludedMemoryFiles": [
+       {
+        "Id": "626202927",
+        "Language": "SFX",
+        "ShortName": "jacob_fastkneetap_1.wav",
+        "Path": "SFX\\jacob_fastkneetap_1_10C4C929.wem"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

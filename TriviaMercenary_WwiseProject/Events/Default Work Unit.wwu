@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{C28AB14C-924F-4B24-99D8-87875D511F20}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{C28AB14C-924F-4B24-99D8-87875D511F20}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Test_Event" ID="{3C12171D-310C-4FE9-BB5F-F20DFEC594E2}">
+					<ChildrenList>
+						<Action Name="" ID="{602CF8D6-694A-4267-B08D-798802037FC4}" ShortID="198599082">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="jacob_fastkneetap_1" ID="{BC1F41EC-6922-411E-A324-874146BBD352}" WorkUnitID="{13771B06-0AD7-449F-A0C0-6908B3000C1A}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

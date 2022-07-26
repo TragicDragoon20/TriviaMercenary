@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{13771B06-0AD7-449F-A0C0-6908B3000C1A}" SchemaVersion="103">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{13771B06-0AD7-449F-A0C0-6908B3000C1A}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Debug" ID="{B74FFD0E-44A3-4296-B8C2-5BFC2E59F4B5}" ShortID="865905859">
+					<ChildrenList>
+						<Sound Name="jacob_fastkneetap_1" ID="{BC1F41EC-6922-411E-A324-874146BBD352}" ShortID="237016673">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{A30B1AC5-BA2A-4FFF-8A9C-8939FEAABFE9}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81A5408D-5BF0-44F9-9384-F2AE65622577}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="jacob_fastkneetap_1" ID="{D1C69C21-B486-4A80-B3C0-7848A7406BA7}">
+									<Language>SFX</Language>
+									<AudioFile>jacob_fastkneetap_1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="626202927"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="jacob_fastkneetap_1" ID="{D1C69C21-B486-4A80-B3C0-7848A7406BA7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
