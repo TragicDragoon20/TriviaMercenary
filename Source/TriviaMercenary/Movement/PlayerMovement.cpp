@@ -37,9 +37,8 @@ void APlayerMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAxis("Move Right", this, &APlayerMovement::MoveRight);
 	PlayerInputComponent->BindAxis("Look Up Mouse", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("Turn Right Mouse", this, &APawn::AddControllerYawInput);
-
-
-
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 }
 
 void APlayerMovement::MoveForward(float value)
