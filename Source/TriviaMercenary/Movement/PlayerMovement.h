@@ -35,4 +35,6 @@ private:
 
 	void MoveForward(float value);
 	void MoveRight(float value);
+	void Crouch();
+	void UnCrouch();
 };

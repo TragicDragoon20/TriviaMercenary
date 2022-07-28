@@ -39,6 +39,19 @@ void APlayerMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAxis("Turn Right Mouse", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &APlayerMovement::Crouch);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &APlayerMovement::UnCrouch);
+
+}
+
+void APlayerMovement::Crouch()
+{
+	this->ACharacter::Crouch();
+}
+
+void APlayerMovement::UnCrouch()
+{
+	this->ACharacter::UnCrouch();
 }
 
 void APlayerMovement::MoveForward(float value)
