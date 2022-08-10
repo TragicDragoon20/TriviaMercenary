@@ -19,15 +19,13 @@ APlayerMovement::APlayerMovement()
 // Called when the game starts or when spawned
 void APlayerMovement::BeginPlay()
 {
-	Super::BeginPlay();
+	Super::BeginPlay();	
 
-	//FActorSpawnParameters parameters;
-	//parameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	//currentWeapon = GetWorld()->SpawnActor<AWeapon>(FVector::Zero, FRotator::ZeroRotator, parameters);
+	currentWeapon = Cast<AWeapon>(GetWorld()->SpawnActor(weapon));
+	//currentWeapon = Cast<AWeapon>(GetWorld()->SpawnActor(weapon, GetActorLocation(), GetActorRotation()));
 
-	currentWeapon = static_cast<AWeapon*>(GetWorld()->SpawnActor(weapon));
-	
-
+	currentWeapon->SetActorLocation(GetActorLocation());
+	currentWeapon->AttachToActor(this, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, false));
 }
 
 // Called every frame
