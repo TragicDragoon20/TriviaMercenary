@@ -37,4 +37,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 	EFiringMode firingMode;
 
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+	float maxFireDistance = 10000.0f;
 };

@@ -2,6 +2,7 @@
 
 
 #include "Weapon.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 AWeapon::AWeapon()

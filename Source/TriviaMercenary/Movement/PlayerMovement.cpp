@@ -24,6 +24,7 @@ void APlayerMovement::BeginPlay()
 	// Spawn starting weapon at player then attach
 	currentWeapon = GetWorld()->SpawnActor<AWeapon>(weapon, GetActorLocation(), FRotator::ZeroRotator);
 	currentWeapon->AttachToActor(this, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, false));
+	currentWeapon->SetOwner(this);
 }
 
 // Called every frame
@@ -83,5 +84,10 @@ void APlayerMovement::OnPrimaryFirePressed()
 void APlayerMovement::OnSecondaryFirePressed()
 {
 	currentWeapon->SecondaryFire();
+}
+
+UCameraComponent* APlayerMovement::GetCameraComponent()
+{
+	return cameraComponent;
 }
 
