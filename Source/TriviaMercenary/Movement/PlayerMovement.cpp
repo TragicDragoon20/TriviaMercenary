@@ -3,6 +3,8 @@
 
 #include "PlayerMovement.h"
 #include "Camera/CameraComponent.h"
+#include "../Arsenal/Weapon.h"
+#include "Engine/World.h"
 
 // Sets default values
 APlayerMovement::APlayerMovement()
@@ -18,6 +20,10 @@ APlayerMovement::APlayerMovement()
 void APlayerMovement::BeginPlay()
 {
 	Super::BeginPlay();
+	FActorSpawnParameters parameters;
+	parameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	//currentWeapon = GetWorld()->SpawnActor<AWeapon>(FVector::Zero, FRotator::ZeroRotator, parameters);
 	
 }
 

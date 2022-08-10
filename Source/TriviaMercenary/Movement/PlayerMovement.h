@@ -7,6 +7,7 @@
 #include "PlayerMovement.generated.h"
 
 class UCameraComponent;
+class AWeapon;
 
 UCLASS()
 class TRIVIAMERCENARY_API APlayerMovement : public ACharacter
@@ -32,6 +33,11 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* cameraComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<AWeapon> weapon;
+
+	AWeapon* currentWeapon;
 
 	void MoveForward(float value);
 	void MoveRight(float value);
