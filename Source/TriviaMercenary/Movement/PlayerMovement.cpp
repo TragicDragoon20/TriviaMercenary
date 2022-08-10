@@ -21,10 +21,8 @@ void APlayerMovement::BeginPlay()
 {
 	Super::BeginPlay();	
 
-	currentWeapon = Cast<AWeapon>(GetWorld()->SpawnActor(weapon));
-	//currentWeapon = Cast<AWeapon>(GetWorld()->SpawnActor(weapon, GetActorLocation(), GetActorRotation()));
-
-	currentWeapon->SetActorLocation(GetActorLocation());
+	// Spawn starting weapon at player then attach
+	currentWeapon = GetWorld()->SpawnActor<AWeapon>(weapon, GetActorLocation(), FRotator::ZeroRotator);
 	currentWeapon->AttachToActor(this, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, false));
 }
 
