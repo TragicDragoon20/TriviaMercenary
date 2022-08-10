@@ -20,11 +20,14 @@ APlayerMovement::APlayerMovement()
 void APlayerMovement::BeginPlay()
 {
 	Super::BeginPlay();
-	FActorSpawnParameters parameters;
-	parameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
+	//FActorSpawnParameters parameters;
+	//parameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	//currentWeapon = GetWorld()->SpawnActor<AWeapon>(FVector::Zero, FRotator::ZeroRotator, parameters);
+
+	currentWeapon = static_cast<AWeapon*>(GetWorld()->SpawnActor(weapon));
 	
+
 }
 
 // Called every frame
@@ -39,6 +42,7 @@ void APlayerMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	// Bind movement input
 	PlayerInputComponent->BindAxis("Move Forward", this, &APlayerMovement::MoveForward);
 	PlayerInputComponent->BindAxis("Move Right", this, &APlayerMovement::MoveRight);
 	PlayerInputComponent->BindAxis("Look Up Mouse", this, &APawn::AddControllerPitchInput);
@@ -48,6 +52,9 @@ void APlayerMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &APlayerMovement::Crouch);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &APlayerMovement::UnCrouch);
 
+	// Bind weapon input
+	PlayerInputComponent->BindAction("Primary Fire", IE_Pressed, this, &APlayerMovement::OnPrimaryFirePressed);
+	PlayerInputComponent->BindAction("Secondary Fire", IE_Pressed, this, &APlayerMovement::OnSecondaryFirePressed);
 }
 
 void APlayerMovement::Crouch()
@@ -70,5 +77,15 @@ void APlayerMovement::MoveRight(float value)
 {
 	FVector direction = FRotationMatrix(this->GetActorRightVector().Rotation()).GetScaledAxis(EAxis::X);
 	AddMovementInput(direction, value * 10);
+}
+
+void APlayerMovement::OnPrimaryFirePressed()
+{
+	currentWeapon->PrimaryFire();
+}
+
+void APlayerMovement::OnSecondaryFirePressed()
+{
+	currentWeapon->SecondaryFire();
 }
 

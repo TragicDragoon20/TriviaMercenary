@@ -5,11 +5,11 @@
 
 void AAssaultRifle::PrimaryFire()
 {
-
+	AWeapon::PrimaryFire();
 }
 
 void AAssaultRifle::SecondaryFire()
 {
-
+	AWeapon::SecondaryFire();
 }
 

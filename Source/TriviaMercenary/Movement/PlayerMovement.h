@@ -43,4 +43,6 @@ private:
 	void MoveRight(float value);
 	void Crouch();
 	void UnCrouch();
+	void OnPrimaryFirePressed();
+	void OnSecondaryFirePressed();
 };
