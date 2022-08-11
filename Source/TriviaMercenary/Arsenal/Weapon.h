@@ -45,9 +45,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 	EFiringMode firingMode;
 
-	// Fully automatic firing mode firing interval
+	// Delay between shots when firing in automatic firing mode
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 	float autoFireInterval = 0.5f;
+
+	// Delay between shots when firing in semi-automatic firing mode
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+	float semiFireInterval = 0.5f;
 
 	// Trace distance
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
@@ -66,6 +70,6 @@ public:
 	bool showTraceDebugInfo = false;
 
 protected:
-	FTimerHandle autoFireTimerHandle;
+	FTimerHandle fireTimerHandle;
 	float timeOfLastFire = 0.0f;
 };

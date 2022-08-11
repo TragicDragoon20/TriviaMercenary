@@ -76,22 +76,31 @@ void AWeapon::SecondaryFire()
 
 void AWeapon::PrimaryFirePressed()
 {
-	switch (firingMode)
+	// Allow us to fire instantly if the world time at last fire <= 0
+	// (this is so you can fire as soon as the weapon spawns in hand)
+	if (timeOfLastFire <= 0)
 	{
-	case EFiringMode::FullyAutomatic:
-		GetWorldTimerManager().SetTimer(autoFireTimerHandle, this, &AWeapon::PrimaryFire, autoFireInterval, true, FMath::Clamp(autoFireInterval - (GetWorld()->GetTimeSeconds() - timeOfLastFire), 0.0f, autoFireInterval));
-		break;
-	case EFiringMode::SemiAutomatic:
 		PrimaryFire();
-		break;
-	default:
-		break;
+	}
+	else
+	{
+		switch (firingMode)
+		{
+		case EFiringMode::FullyAutomatic:
+			GetWorldTimerManager().SetTimer(fireTimerHandle, this, &AWeapon::PrimaryFire, autoFireInterval, true, FMath::Clamp(autoFireInterval - (GetWorld()->GetTimeSeconds() - timeOfLastFire), 0.0f, autoFireInterval));
+			break;
+		case EFiringMode::SemiAutomatic:
+			GetWorldTimerManager().SetTimer(fireTimerHandle, this, &AWeapon::PrimaryFire, semiFireInterval, false, FMath::Clamp(semiFireInterval - (GetWorld()->GetTimeSeconds() - timeOfLastFire), 0.0f, semiFireInterval));
+			break;
+		default:
+			break;
+		}
 	}
 }
 
 void AWeapon::PrimaryFireReleased()
 {
-	GetWorldTimerManager().ClearTimer(autoFireTimerHandle);
+	GetWorldTimerManager().ClearTimer(fireTimerHandle);
 }
 
 void AWeapon::SecondaryFirePressed()
