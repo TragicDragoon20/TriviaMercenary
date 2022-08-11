@@ -14,7 +14,7 @@ APlayerMovement::APlayerMovement()
 	PrimaryActorTick.bCanEverTick = true;
 	cameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	cameraComponent->SetupAttachment(RootComponent);
-
+	startingFOV = cameraComponent->FieldOfView;
 }
 
 // Called when the game starts or when spawned
@@ -110,7 +110,7 @@ void APlayerMovement::OnSecondaryFireReleased()
 	if (!IsValid(currentWeapon))
 		return;
 
-	currentWeapon->PrimaryFireReleased();
+	currentWeapon->SecondaryFireReleased();
 }
 
 void APlayerMovement::OnReloadPressed()

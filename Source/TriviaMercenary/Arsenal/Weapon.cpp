@@ -71,7 +71,6 @@ void AWeapon::PrimaryFire()
 
 void AWeapon::SecondaryFire()
 {
-
 }
 
 void AWeapon::PrimaryFirePressed()
@@ -105,7 +104,7 @@ void AWeapon::PrimaryFireReleased()
 
 void AWeapon::SecondaryFirePressed()
 {
-
+	SecondaryFire();
 }
 
 void AWeapon::SecondaryFireReleased()

@@ -17,10 +17,13 @@ public:
 
 	virtual void PrimaryFire() override;
 	virtual void SecondaryFire() override;
+	virtual void SecondaryFireReleased() override;
 	virtual void Reload();
+	virtual void StartADS();
+	virtual void StopADS();
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ammo")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ammo")
 	int magazineAmmo = 0;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ammo")
@@ -28,6 +31,15 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ammo")
 	int startingAmmoInMagazine = 32;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aim Down Sights")
+	float adsFOV = 70.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Aim Down Sights")
+	bool isADS = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aim Down Sights")
+	bool toggleADS = false;
 
 protected:
 	virtual int SetMagazineAmmo(int Value);

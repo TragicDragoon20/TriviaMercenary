@@ -19,29 +19,25 @@ public:
 	// Sets default values for this character's properties
 	APlayerMovement();
 
-	UCameraComponent* GetCameraComponent();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:	
+	UCameraComponent* GetCameraComponent();
+
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	float startingFOV;
+
 private:
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component", meta = (AllowPrivateAccess = "true"))
-	UCameraComponent* cameraComponent;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon", meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<AWeapon> weapon;
-
-	AWeapon* currentWeapon;
-
 	// Movement
 	void MoveForward(float value);
 	void MoveRight(float value);
@@ -54,4 +50,13 @@ private:
 	void OnSecondaryFirePressed();
 	void OnSecondaryFireReleased();
 	void OnReloadPressed();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component", meta = (AllowPrivateAccess = "true"))
+	UCameraComponent* cameraComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<AWeapon> weapon;
+
+	UPROPERTY(VisibleAnywhere, Category = "Weapon")
+	AWeapon* currentWeapon;
 };

@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AssaultRifle.h"
+#include "../Movement/PlayerMovement.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values
 AAssaultRifle::AAssaultRifle()
@@ -46,6 +48,11 @@ void AAssaultRifle::PrimaryFire()
 void AAssaultRifle::SecondaryFire()
 {
 	AWeapon::SecondaryFire();
+
+	if (toggleADS && isADS)
+		StopADS();
+	else
+		StartADS();
 }
 
 void AAssaultRifle::Reload()
@@ -61,4 +68,32 @@ int AAssaultRifle::SetMagazineAmmo(int Value)
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Cyan, FString::Printf(TEXT("New ammo: %f"), newAmmo));
 	}
 	return magazineAmmo = newAmmo;
+}
+
+void AAssaultRifle::SecondaryFireReleased()
+{
+	Super::SecondaryFireReleased();
+
+	if (!toggleADS)
+		StopADS();
+}
+
+void AAssaultRifle::StartADS()
+{
+	isADS = true;
+
+	APlayerMovement* player = Cast<APlayerMovement>(GetOwner());
+	UCameraComponent* camera = player->GetCameraComponent();
+
+	camera->SetFieldOfView(adsFOV);
+}
+
+void AAssaultRifle::StopADS()
+{
+	isADS = false;
+
+	APlayerMovement* player = Cast<APlayerMovement>(GetOwner());
+	UCameraComponent* camera = player->GetCameraComponent();
+
+	camera->SetFieldOfView(player->startingFOV);
 }
