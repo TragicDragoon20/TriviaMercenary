@@ -38,12 +38,18 @@ float AEnemy::SetHealth(float Value)
 	if (Value <= 0)
 	{
 		Death();
-		GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, FString::Printf(TEXT("Setting new health: %f"), 0));
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, FString::Printf(TEXT("Setting new health: %f"), 0));
+		}
 		return health = 0;
 	}
 	else
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, FString::Printf(TEXT("Setting new health: %f"), Value));
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, FString::Printf(TEXT("Setting new health: %f"), Value));
+		}
 		return health = Value;
 	}
 
