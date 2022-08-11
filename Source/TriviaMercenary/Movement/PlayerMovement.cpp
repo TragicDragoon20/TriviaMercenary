@@ -4,6 +4,7 @@
 #include "PlayerMovement.h"
 #include "Camera/CameraComponent.h"
 #include "../Arsenal/Weapon.h"
+#include "../Arsenal/AssaultRifle.h"
 #include "Engine/World.h"
 
 // Sets default values
@@ -54,6 +55,7 @@ void APlayerMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction("Primary Fire", IE_Released, this, &APlayerMovement::OnPrimaryFireReleased);
 	PlayerInputComponent->BindAction("Secondary Fire", IE_Pressed, this, &APlayerMovement::OnSecondaryFirePressed);
 	PlayerInputComponent->BindAction("Secondary Fire", IE_Released, this, &APlayerMovement::OnSecondaryFireReleased);
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &APlayerMovement::OnReloadPressed);
 }
 
 void APlayerMovement::Crouch()
@@ -80,23 +82,45 @@ void APlayerMovement::MoveRight(float value)
 
 void APlayerMovement::OnPrimaryFirePressed()
 {
+	if (!IsValid(currentWeapon))
+		return;
+
 	currentWeapon->PrimaryFirePressed();
 }
 
 void APlayerMovement::OnPrimaryFireReleased()
 {
+	if (!IsValid(currentWeapon))
+		return;
+
 	currentWeapon->PrimaryFireReleased();
 
 }
 
 void APlayerMovement::OnSecondaryFirePressed()
 {
+	if (!IsValid(currentWeapon))
+		return;
+
 	currentWeapon->SecondaryFirePressed();
 }
 
 void APlayerMovement::OnSecondaryFireReleased()
 {
+	if (!IsValid(currentWeapon))
+		return;
+
 	currentWeapon->PrimaryFireReleased();
+}
+
+void APlayerMovement::OnReloadPressed()
+{
+	if (!IsValid(currentWeapon))
+		return;
+
+	AAssaultRifle* rifle = Cast<AAssaultRifle>(currentWeapon);
+	if (rifle != nullptr)
+		rifle->Reload();
 }
 
 UCameraComponent* APlayerMovement::GetCameraComponent()

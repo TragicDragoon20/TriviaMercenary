@@ -2,9 +2,23 @@
 
 #include "AssaultRifle.h"
 
+// Sets default values
+AAssaultRifle::AAssaultRifle()
+{
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
+
+	SetMagazineAmmo(startingAmmoInMagazine);
+}
+
 void AAssaultRifle::PrimaryFire()
 {
+	if (magazineAmmo <= 0)
+		return;
+
 	AWeapon::PrimaryFire();
+
+	SetMagazineAmmo(magazineAmmo - 1);
 
 	FHitResult hit;
 	if (TraceForward(hit, ECC_Visibility, showTraceDebugInfo))
@@ -32,4 +46,19 @@ void AAssaultRifle::PrimaryFire()
 void AAssaultRifle::SecondaryFire()
 {
 	AWeapon::SecondaryFire();
+}
+
+void AAssaultRifle::Reload()
+{
+	SetMagazineAmmo(magazineSize);
+}
+
+int AAssaultRifle::SetMagazineAmmo(int Value)
+{
+	float newAmmo = FMath::Clamp(Value, 0.0f, magazineSize);
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Cyan, FString::Printf(TEXT("New ammo: %f"), newAmmo));
+	}
+	return magazineAmmo = newAmmo;
 }

@@ -8,6 +8,7 @@
 
 class UCameraComponent;
 class AWeapon;
+class AAssaultRifle;
 
 UCLASS()
 class TRIVIAMERCENARY_API APlayerMovement : public ACharacter
@@ -52,4 +53,5 @@ private:
 	void OnPrimaryFireReleased();
 	void OnSecondaryFirePressed();
 	void OnSecondaryFireReleased();
+	void OnReloadPressed();
 };
