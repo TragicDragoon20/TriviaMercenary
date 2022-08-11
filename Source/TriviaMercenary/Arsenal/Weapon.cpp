@@ -23,12 +23,17 @@ void AWeapon::BeginPlay()
 
 bool AWeapon::TraceForward(OUT FHitResult& hit, ECollisionChannel channel, bool drawDebugLine)
 {
+	UCameraComponent* camera = Cast<APlayerMovement>(GetOwner())->GetCameraComponent();
+
+	// Stop if we can't get the camera
+	if (camera == nullptr)
+		return false;
+
 	// Use this actor's location for start vector
-	// todo: change to gun's muzzle
-	FVector start = GetActorLocation();
+	FVector start = camera->GetComponentLocation();
 
 	// Get forward vector from first person camera component
-	FVector direction = Cast<APlayerMovement>(GetOwner())->GetCameraComponent()->GetForwardVector();
+	FVector direction = camera->GetForwardVector();
 
 	// Calculate end point
 	FVector end = start + (direction * maxFireDistance);
