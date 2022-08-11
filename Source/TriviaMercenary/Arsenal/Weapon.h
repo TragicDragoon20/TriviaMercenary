@@ -7,6 +7,7 @@
 #include "Weapon.generated.h"
 
 class APlayerMovement;
+class UCameraComponent;
 
 UENUM(BlueprintType)
 enum class EFiringMode : uint8
@@ -33,6 +34,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Called when weapon is picked up
+	virtual void OnPickup();
+
+	// Firing
 	virtual void PrimaryFire();
 	virtual void SecondaryFire();
 	virtual void PrimaryFirePressed();
@@ -72,4 +77,8 @@ public:
 protected:
 	FTimerHandle fireTimerHandle;
 	float timeOfLastFire = 0.0f;
+
+	// Cached references
+	APlayerMovement* player;
+	UCameraComponent* camera;
 };

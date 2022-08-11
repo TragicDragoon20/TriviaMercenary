@@ -22,8 +22,6 @@ void AWeapon::BeginPlay()
 
 bool AWeapon::TraceForward(OUT FHitResult& hit, ECollisionChannel channel, bool drawDebugLine)
 {
-	UCameraComponent* camera = Cast<APlayerMovement>(GetOwner())->GetCameraComponent();
-
 	// Stop if we can't get the camera
 	if (camera == nullptr)
 		return false;
@@ -110,4 +108,10 @@ void AWeapon::SecondaryFirePressed()
 void AWeapon::SecondaryFireReleased()
 {
 
+}
+
+void AWeapon::OnPickup()
+{
+	player = Cast<APlayerMovement>(GetOwner());
+	camera = player->GetCameraComponent();
 }

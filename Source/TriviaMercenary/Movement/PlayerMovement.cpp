@@ -26,6 +26,7 @@ void APlayerMovement::BeginPlay()
 	currentWeapon = GetWorld()->SpawnActor<AWeapon>(weapon, GetActorLocation(), FRotator::ZeroRotator);
 	currentWeapon->AttachToActor(this, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, false));
 	currentWeapon->SetOwner(this);
+	currentWeapon->OnPickup();
 }
 
 // Called every frame
@@ -118,8 +119,7 @@ void APlayerMovement::OnReloadPressed()
 	if (!IsValid(currentWeapon))
 		return;
 
-	AAssaultRifle* rifle = Cast<AAssaultRifle>(currentWeapon);
-	if (rifle != nullptr)
+	if (AAssaultRifle* rifle = Cast<AAssaultRifle>(currentWeapon))
 		rifle->Reload();
 }
 

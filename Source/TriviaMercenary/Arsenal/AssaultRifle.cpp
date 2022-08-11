@@ -25,8 +25,8 @@ void AAssaultRifle::PrimaryFire()
 	FHitResult hit;
 	if (TraceForward(hit, ECC_Visibility, showTraceDebugInfo))
 	{
-		AActor* target = hit.GetActor();
-		if (IsValid(target))
+		// Check if what we've hit is an actor
+		if (AActor* target = hit.GetActor())
 		{
 			// Calculate shot direction
 			// todo: probably use start location as a variable from TraceForward instead of getting it via GetActorLocation()?
@@ -80,20 +80,18 @@ void AAssaultRifle::SecondaryFireReleased()
 
 void AAssaultRifle::StartADS()
 {
-	isADS = true;
-
-	APlayerMovement* player = Cast<APlayerMovement>(GetOwner());
-	UCameraComponent* camera = player->GetCameraComponent();
-
-	camera->SetFieldOfView(adsFOV);
+	if (camera != nullptr)
+	{
+		isADS = true;
+		camera->SetFieldOfView(adsFOV);
+	}
 }
 
 void AAssaultRifle::StopADS()
 {
-	isADS = false;
-
-	APlayerMovement* player = Cast<APlayerMovement>(GetOwner());
-	UCameraComponent* camera = player->GetCameraComponent();
-
-	camera->SetFieldOfView(player->startingFOV);
+	if (camera != nullptr)
+	{
+		isADS = false;
+		camera->SetFieldOfView(player->startingFOV);
+	}
 }
