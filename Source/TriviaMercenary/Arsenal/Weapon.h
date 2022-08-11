@@ -45,7 +45,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 	float maxFireDistance = 10000.0f;
 
+	// Base damage
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+	int baseDamage = 5;
+
+	// Base damage type
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+	TSubclassOf<UDamageType> baseDamageType;
+
 	// Show debug info
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Debug")
 	bool showTraceDebugInfo = false;
+
 };
