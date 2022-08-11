@@ -41,10 +41,15 @@ private:
 
 	AWeapon* currentWeapon;
 
+	// Movement
 	void MoveForward(float value);
 	void MoveRight(float value);
 	void Crouch();
 	void UnCrouch();
+
+	// Weapon
 	void OnPrimaryFirePressed();
+	void OnPrimaryFireReleased();
 	void OnSecondaryFirePressed();
+	void OnSecondaryFireReleased();
 };

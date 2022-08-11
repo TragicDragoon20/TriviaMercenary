@@ -35,11 +35,19 @@ public:
 
 	virtual void PrimaryFire();
 	virtual void SecondaryFire();
+	virtual void PrimaryFirePressed();
+	virtual void PrimaryFireReleased();
+	virtual void SecondaryFirePressed();
+	virtual void SecondaryFireReleased();
 
 public:
 	// Selected firing mode (automatic, semi-automatic, etc.)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 	EFiringMode firingMode;
+
+	// Fully automatic firing mode firing interval
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+	float autoFireInterval = 0.5f;
 
 	// Trace distance
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
@@ -57,4 +65,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Debug")
 	bool showTraceDebugInfo = false;
 
+protected:
+	FTimerHandle autoFireTimerHandle;
+	float timeOfLastFire = 0.0f;
 };

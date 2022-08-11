@@ -51,7 +51,9 @@ void APlayerMovement::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	// Bind weapon input
 	PlayerInputComponent->BindAction("Primary Fire", IE_Pressed, this, &APlayerMovement::OnPrimaryFirePressed);
+	PlayerInputComponent->BindAction("Primary Fire", IE_Released, this, &APlayerMovement::OnPrimaryFireReleased);
 	PlayerInputComponent->BindAction("Secondary Fire", IE_Pressed, this, &APlayerMovement::OnSecondaryFirePressed);
+	PlayerInputComponent->BindAction("Secondary Fire", IE_Released, this, &APlayerMovement::OnSecondaryFireReleased);
 }
 
 void APlayerMovement::Crouch()
@@ -78,12 +80,23 @@ void APlayerMovement::MoveRight(float value)
 
 void APlayerMovement::OnPrimaryFirePressed()
 {
-	currentWeapon->PrimaryFire();
+	currentWeapon->PrimaryFirePressed();
+}
+
+void APlayerMovement::OnPrimaryFireReleased()
+{
+	currentWeapon->PrimaryFireReleased();
+
 }
 
 void APlayerMovement::OnSecondaryFirePressed()
 {
-	currentWeapon->SecondaryFire();
+	currentWeapon->SecondaryFirePressed();
+}
+
+void APlayerMovement::OnSecondaryFireReleased()
+{
+	currentWeapon->PrimaryFireReleased();
 }
 
 UCameraComponent* APlayerMovement::GetCameraComponent()

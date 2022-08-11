@@ -11,7 +11,6 @@ AWeapon::AWeapon()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
@@ -67,7 +66,7 @@ void AWeapon::Tick(float DeltaTime)
 
 void AWeapon::PrimaryFire()
 {
-
+	timeOfLastFire = GetWorld()->GetTimeSeconds();
 }
 
 void AWeapon::SecondaryFire()
@@ -75,3 +74,32 @@ void AWeapon::SecondaryFire()
 
 }
 
+void AWeapon::PrimaryFirePressed()
+{
+	switch (firingMode)
+	{
+	case EFiringMode::FullyAutomatic:
+		GetWorldTimerManager().SetTimer(autoFireTimerHandle, this, &AWeapon::PrimaryFire, autoFireInterval, true, FMath::Clamp(autoFireInterval - (GetWorld()->GetTimeSeconds() - timeOfLastFire), 0.0f, autoFireInterval));
+		break;
+	case EFiringMode::SemiAutomatic:
+		PrimaryFire();
+		break;
+	default:
+		break;
+	}
+}
+
+void AWeapon::PrimaryFireReleased()
+{
+	GetWorldTimerManager().ClearTimer(autoFireTimerHandle);
+}
+
+void AWeapon::SecondaryFirePressed()
+{
+
+}
+
+void AWeapon::SecondaryFireReleased()
+{
+
+}
