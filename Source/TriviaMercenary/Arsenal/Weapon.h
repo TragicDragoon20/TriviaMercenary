@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Weapon.generated.h"
 
+class APlayerMovement;
+
 UENUM(BlueprintType)
 enum class EFiringMode : uint8
 {
@@ -25,6 +27,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual bool TraceForward(OUT FHitResult& hit, ECollisionChannel channel, bool drawDebugLine = false);
 
 public:	
 	// Called every frame
@@ -34,10 +37,15 @@ public:
 	virtual void SecondaryFire();
 
 public:
+	// Selected firing mode (automatic, semi-automatic, etc.)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 	EFiringMode firingMode;
 
-protected:
+	// Trace distance
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
 	float maxFireDistance = 10000.0f;
+
+	// Show debug info
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Debug")
+	bool showTraceDebugInfo = false;
 };

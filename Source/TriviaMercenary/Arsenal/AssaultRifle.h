@@ -6,9 +6,6 @@
 #include "Weapon.h"
 #include "AssaultRifle.generated.h"
 
-class UGameplayStatics;
-class APlayerMovement;
-
 UCLASS()
 class TRIVIAMERCENARY_API AAssaultRifle : public AWeapon
 {
