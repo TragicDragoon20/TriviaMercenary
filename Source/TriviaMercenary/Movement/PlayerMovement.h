@@ -50,13 +50,14 @@ private:
 	void OnSecondaryFirePressed();
 	void OnSecondaryFireReleased();
 	void OnReloadPressed();
-
+	
+	// Camera
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* cameraComponent;
 
+	// Weapon
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AWeapon> weapon;
-
 	UPROPERTY(VisibleAnywhere, Category = "Weapon")
 	AWeapon* currentWeapon;
 };

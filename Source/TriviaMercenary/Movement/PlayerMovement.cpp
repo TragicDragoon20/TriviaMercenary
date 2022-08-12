@@ -127,4 +127,3 @@ UCameraComponent* APlayerMovement::GetCameraComponent()
 {
 	return cameraComponent;
 }
-
