@@ -7,7 +7,7 @@
 #include "HealthComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(Health), meta=(BlueprintSpawnableComponent))
 class TRIVIAMERCENARY_API UHealthComponent : public UActorComponent
 {
 	GENERATED_BODY()
