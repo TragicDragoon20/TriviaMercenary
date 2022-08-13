@@ -25,7 +25,9 @@ public:
 
 	virtual void StartPlay() override;
 
+	UFUNCTION(BlueprintCallable, Category = "Game Mode")
 	void NewRun();
+	UFUNCTION(BlueprintCallable, Category = "Game Mode")
 	void NextFloor();
 
 	void FloorComplete();
@@ -34,6 +36,7 @@ public:
 
 	void RunOver();
 
+	UFUNCTION(BlueprintCallable, Category = "Game Mode")
 	void EndGame();
 
 protected:
