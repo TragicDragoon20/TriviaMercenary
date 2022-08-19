@@ -26,12 +26,11 @@ void UHealthComponent::BeginPlay()
 	
 }
 
-void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
-{
-	if (isDead || Damage <= 0)
-		return;
 
-	SetHealth(health - Damage);
+void UHealthComponent::SetHealth(float Value)
+{
+	health = FMath::Clamp(Value, 0.0f, maxHealth);
+	OnSetHealth.Broadcast(health);
 
 	if (health <= 0)
 	{
@@ -39,10 +38,22 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
 	}
 }
 
-void UHealthComponent::SetHealth(float Value)
+void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	health = FMath::Clamp(Value, 0.0f, maxHealth);
-	OnSetHealth.Broadcast(health);
+	if (isDead || Damage <= 0)
+		return;
+
+	SetHealth(health - Damage);
+}
+
+void UHealthComponent::Heal(float Amount) 
+{
+	if (isDead || Amount <= 0)
+		return;
+
+	OnHeal.Broadcast(Amount);
+	SetHealth(health + Amount);
+
 }
 
 void UHealthComponent::Death()
@@ -50,5 +61,6 @@ void UHealthComponent::Death()
 	if (isDead)
 		return;
 
+	OnDeath.Broadcast();
 	isDead = true;
 }

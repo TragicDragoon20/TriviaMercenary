@@ -8,6 +8,8 @@
 
 // Delegates
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSetHealthDelegate, float, NewHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHealDelegate, float, HealAmount);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDeathDelegate);
 
 UCLASS(ClassGroup=(Health), meta=(BlueprintSpawnableComponent))
 class TRIVIAMERCENARY_API UHealthComponent : public UActorComponent
@@ -21,6 +23,10 @@ public:
 	// Delegates
 	UPROPERTY(BlueprintAssignable, Category = "Health")
 	FSetHealthDelegate OnSetHealth;
+	UPROPERTY(BlueprintAssignable, Category = "Health")
+	FHealDelegate OnHeal;
+	UPROPERTY(BlueprintAssignable, Category = "Health")
+	FDeathDelegate OnDeath;
 
 protected:
 	// Called when the game starts
@@ -39,9 +45,11 @@ protected:
 	float maxHealth = 100;
 
 	UFUNCTION()
+	virtual void SetHealth(float Value);
+
 	virtual void TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
-	virtual void SetHealth(float Value);
+	virtual void Heal(float Amount);
 
 	virtual void Death();
 };
