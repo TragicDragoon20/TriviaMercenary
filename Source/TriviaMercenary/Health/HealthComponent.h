@@ -6,8 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSetHealthDelegate, float, NewHealth);
 
-UCLASS( ClassGroup=(Health), meta=(BlueprintSpawnableComponent))
+UCLASS(ClassGroup=(Health), meta=(BlueprintSpawnableComponent))
 class TRIVIAMERCENARY_API UHealthComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -16,11 +17,13 @@ public:
 	// Sets default values for this component's properties
 	UHealthComponent();
 
-	UFUNCTION(BlueprintNativeEvent, meta = (DisplayName = "On Health Value Set"))
-	void OnSetHealth(float NewHealth);
-	virtual void OnSetHealth_Implementation(float NewHealth);
+	//UFUNCTION(BlueprintNativeEvent, meta = (DisplayName = "On Health Value Set"))
+	//void OnSetHealth(float NewHealth);
+	//virtual void OnSetHealth_Implementation(float NewHealth);
 
-	//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSetHealthDelegate, float, NewHealth);
+	UPROPERTY(BlueprintAssignable, Category = "Health")
+	FSetHealthDelegate OnSetHealth;
+
 
 	//UPROPERTY(BlueprintAssignable)
 	//FSetHealthDelegate onSetHealthDelegate;

@@ -43,13 +43,13 @@ void UHealthComponent::SetHealth(float Value)
 {
 	health = FMath::Clamp(Value, 0.0f, maxHealth);
 	//onSetHealth.Broadcast(health);
-	OnSetHealth(health);
+	OnSetHealth.Broadcast(health);
 }
 
-void UHealthComponent::OnSetHealth_Implementation(float NewHealth)
-{
-
-}
+//void UHealthComponent::OnSetHealth_Implementation(float NewHealth)
+//{
+//
+//}
 
 void UHealthComponent::Death()
 {
