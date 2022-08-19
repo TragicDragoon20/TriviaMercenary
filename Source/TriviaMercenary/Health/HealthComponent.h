@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 
+// Delegates
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSetHealthDelegate, float, NewHealth);
 
 UCLASS(ClassGroup=(Health), meta=(BlueprintSpawnableComponent))
@@ -17,16 +18,9 @@ public:
 	// Sets default values for this component's properties
 	UHealthComponent();
 
-	//UFUNCTION(BlueprintNativeEvent, meta = (DisplayName = "On Health Value Set"))
-	//void OnSetHealth(float NewHealth);
-	//virtual void OnSetHealth_Implementation(float NewHealth);
-
+	// Delegates
 	UPROPERTY(BlueprintAssignable, Category = "Health")
 	FSetHealthDelegate OnSetHealth;
-
-
-	//UPROPERTY(BlueprintAssignable)
-	//FSetHealthDelegate onSetHealthDelegate;
 
 protected:
 	// Called when the game starts

@@ -42,14 +42,8 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const UDam
 void UHealthComponent::SetHealth(float Value)
 {
 	health = FMath::Clamp(Value, 0.0f, maxHealth);
-	//onSetHealth.Broadcast(health);
 	OnSetHealth.Broadcast(health);
 }
-
-//void UHealthComponent::OnSetHealth_Implementation(float NewHealth)
-//{
-//
-//}
 
 void UHealthComponent::Death()
 {
