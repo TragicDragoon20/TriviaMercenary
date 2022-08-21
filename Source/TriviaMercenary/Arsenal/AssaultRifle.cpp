@@ -63,10 +63,11 @@ void AAssaultRifle::Reload()
 int AAssaultRifle::SetMagazineAmmo(int Value)
 {
 	float newAmmo = FMath::Clamp(Value, 0.0f, magazineSize);
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Cyan, FString::Printf(TEXT("New ammo: %f"), newAmmo));
-	}
+	OnSetMagazineAmmo.Broadcast(newAmmo);
+	//if (GEngine)
+	//{
+	//	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Cyan, FString::Printf(TEXT("New ammo: %f"), newAmmo));
+	//}
 	return magazineAmmo = newAmmo;
 }
 

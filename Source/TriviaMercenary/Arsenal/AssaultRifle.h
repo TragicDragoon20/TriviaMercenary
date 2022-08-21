@@ -6,6 +6,9 @@
 #include "Weapon.h"
 #include "AssaultRifle.generated.h"
 
+// Delegates
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSetMagazineAmmo, int, NewAmmo);
+
 UCLASS()
 class TRIVIAMERCENARY_API AAssaultRifle : public AWeapon
 {
@@ -15,6 +18,11 @@ public:
 	// Sets default values for this actor's properties
 	AAssaultRifle();
 
+public:
+	UPROPERTY(BlueprintAssignable, Category = "Ammo")
+	FSetMagazineAmmo OnSetMagazineAmmo;
+
+public:
 	virtual void PrimaryFire() override;
 	virtual void SecondaryFire() override;
 	virtual void SecondaryFireReleased() override;
